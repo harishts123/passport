@@ -9,7 +9,7 @@ pipeline{
       stage("Maven Build"){
           steps{
              script{
-                  flag-email=env.STAGE_NAME
+                  flagemail=env.STAGE_NAME
             }
               sh 'mvn -B -DskipTests clean package'
           }
@@ -18,7 +18,7 @@ pipeline{
       stage('Maven Test'){
             steps{
                script{
-                  flag-email=env.STAGE_NAME
+                  flagemail=env.STAGE_NAME
             }
                 sh 'mvn test'
             }
@@ -32,7 +32,7 @@ pipeline{
             agent any
             steps {
                 script{
-                  flag-email=env.STAGE_NAME
+                  flagemail=env.STAGE_NAME
             }
               withSonarQubeEnv('sonar-pass') {
                 sh 'java -version'
@@ -57,7 +57,7 @@ pipeline{
             emailext attachLog: true, body: "<b>Example</b><br>Project: ${env.JOB_NAME}", from: 'harish.dummymail@gmail.com', mimeType: 'text/html', replyTo: '', subject: "Deploy Successfully!! Project name -> ${env.JOB_NAME}", to: "harishts123@gmail.com; harish.dummymail@gmail.com";
          }  
          failure {  
-             mail bcc: '', body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> Stage Name: $flag-email <br> URL de build: ${env.BUILD_URL}", cc: 'sanjayselvam5@gmail.com', charset: 'UTF-8', from: 'harish.dummymail@gmail.com', mimeType: 'text/html', replyTo: '', subject: "ERROR Deploy Failed: Project name -> ${env.JOB_NAME}", to: "harishts123@gmail.com";  
+             mail bcc: '', body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> Stage Name: $flagemail <br> URL de build: ${env.BUILD_URL}", cc: 'sanjayselvam5@gmail.com', charset: 'UTF-8', from: 'harish.dummymail@gmail.com', mimeType: 'text/html', replyTo: '', subject: "ERROR Deploy Failed: Project name -> ${env.JOB_NAME}", to: "harishts123@gmail.com";  
          }  
          unstable {  
              echo 'This will run only if the run was marked as unstable'  
