@@ -50,7 +50,7 @@ pipeline{
            "files" :[
            {
            "pattern":"target/*.jar",
-           "target":"pass-2.1.1/Folder1"
+           "target":"pass-2.1.1/Folder1/"
            }
            ]
          }''',
