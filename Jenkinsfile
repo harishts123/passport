@@ -50,7 +50,7 @@ pipeline{
            "files" :[
            {
            "pattern":"target/*.jar",
-           "target":"mav-2022.201.3-rep"
+           "target":"pass-2.1.1/Folder1/Subfolder1"
            }
            ]
          }''',
